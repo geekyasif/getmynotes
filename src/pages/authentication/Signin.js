@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { handleSignIn } from "../../features/authSlice/authSlice";
 
 function Signin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { authSignInError, authLoading } = useSelector((state) => state.auth);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,7 +17,9 @@ function Signin() {
       dispatch(handleSignIn(email, password));
       setEmail("");
       setPassword("");
-      navigate("/");
+      if (authSignInError === "") {
+        navigate("/");
+      }
     }
   };
 
@@ -25,9 +28,13 @@ function Signin() {
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col justify-center items-center h-full w-full">
           <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
-            Sign in To GetMyNotes
+            {/* GetMyNotes */}
           </h1>
-          <div className="">
+
+          <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:mx-auto w-full mt-10 md:mt-0">
+          <h2 class="text-gray-900 text-lg font-medium title-font mb-5">
+              Sign In
+            </h2>
             <div className="p-2">
               <div className="relative">
                 <label
@@ -42,7 +49,7 @@ function Signin() {
                   name="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  className="w-full bg-white bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 />
               </div>
             </div>
@@ -61,13 +68,20 @@ function Signin() {
                   name="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  className="w-full bg-white bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 />
               </div>
+              <p className="text-red-600 text-center text-sm mt-3">
+                {authSignInError == "" ? "" : authSignInError}
+              </p>
             </div>
 
             <button
-              className="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 mt-2 focus:outline-none hover:bg-indigo-600 rounded text-sm"
+              disabled={authLoading}
+              className={
+                authLoading ? "flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 mt-2 focus:outline-none hover:bg-indigo-600 rounded text-sm disabled:opacity-50 disabled:cursor-not-allowed" :
+                "flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 mt-2 focus:outline-none hover:bg-indigo-600 rounded text-sm"
+              }
               onClick={handleSigninAndValidate}
             >
               Sign in

@@ -46,7 +46,6 @@ function Navigation() {
             className="inline-flex items-center text-white bg-indigo-500 border-0 py-1 px-3 focus:outline-none hover:bg-indigo-600 rounded text-base mt-4 md:mt-0 mr-3"
             onClick={() => signOut()}
           >
-            {user.email}
             Sign Out
           </button>
         ) : (
