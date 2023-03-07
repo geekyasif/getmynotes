@@ -66,8 +66,8 @@ function Notes() {
   }, [document]);
 
   return (
-    <div className="h-full">
-      <div className="container mx-auto flex md:flex-row sm:flex-row-reverse flex-wrap my-4 justify-around">
+    <div className="container mx-auto">
+      <div className="flex flex-row flex-wrap-reverse my-4 justify-around">
         <UserNoteSidebar
           handleTabClick={handleTabClick}
           subjects={subjectList}

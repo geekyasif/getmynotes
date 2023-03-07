@@ -4,8 +4,8 @@ import Loader from "react-js-loader";
 function UserNoteSidebarContainer({ data, notes, loading }) {
   return (
     <div
-      style={{ width: "78%" }}
-      className="bg-gray-100 p-4 rounded flex flex-col shadow mb-4 sm:w-full sm:ml-0"
+      style={{ width: "80%" }}
+      className="bg-gray-100 p-4 rounded flex flex-col shadow mb-4 "
     >
       <p className="text-2xl font-bold mb-4 text-center mt-2">{data}</p>
 
