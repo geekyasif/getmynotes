@@ -1,27 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { handleSignIn } from "../../features/authSlice/authSlice";
+import { handleSignIn, setAuthSignInError } from "../../features/authSlice/authSlice";
 
 function Signin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { authSignInError, authLoading } = useSelector((state) => state.auth);
+  const { authSignInError, authLoading, authToken } = useSelector((state) => state.auth);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSigninAndValidate = () => {
+
     if (email === "" || password === "") {
-      alert("All fields are required!");
+      dispatch(setAuthSignInError("All fields are required!"))
     } else {
-      dispatch(handleSignIn(email, password));
-      setEmail("");
-      setPassword("");
-      if (authSignInError === "") {
-        navigate("/");
+      const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+      const isValid = emailRegex.test(email);
+
+      if(isValid){
+        dispatch(handleSignIn(email, password));
+        setEmail("");
+        setPassword("");
+      }else{
+        dispatch(setAuthSignInError("Invalid email address!"))
       }
     }
   };
+
+  useEffect(() => {
+    if(authToken !== null){
+      navigate("/")
+    }
+},[authToken])
 
   return (
     <section className="text-gray-600 body-font relative">
@@ -32,7 +43,7 @@ function Signin() {
           </h1>
 
           <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:mx-auto w-full mt-10 md:mt-0">
-          <h2 class="text-gray-900 text-lg font-medium title-font mb-5">
+          <h2 className="text-gray-900 text-lg font-medium title-font mb-5">
               Sign In
             </h2>
             <div className="p-2">
@@ -71,9 +82,7 @@ function Signin() {
                   className="w-full bg-white bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 />
               </div>
-              <p className="text-red-600 text-center text-sm mt-3">
-                {authSignInError == "" ? "" : authSignInError}
-              </p>
+              {authSignInError && <p className="text-red-600 text-center text-sm mt-3">{authSignInError}</p>}
             </div>
 
             <button

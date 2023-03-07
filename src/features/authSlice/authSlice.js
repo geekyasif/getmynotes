@@ -12,8 +12,8 @@ const authSlice = createSlice({
   initialState: {
     user: {},
     authToken: null,
-    authSignInError: "",
-    authSignUpError: "",
+    authSignInError: null,
+    authSignUpError: null,
     authLoading: false,
   },
   reducers: {
@@ -35,11 +35,8 @@ const authSlice = createSlice({
     setAuthSignUpError: (state, action) => {
       state.authSignUpError = action.payload;
     },
-    setAuthLoading: (state) => {
-      state.authLoading = true;
-    },
-    removeAuthLoading: (state) => {
-      state.authLoading = false;
+    setAuthLoading: (state, action) => {
+      state.authLoading = action.payload;
     },
   },
 });
@@ -59,7 +56,7 @@ export default authSlice.reducer;
 export function handleSignIn(email, password) {
   return async function handleSignInThunk(dispatch, getState) {
     try {
-      dispatch(setAuthLoading());
+      dispatch(setAuthLoading(true));
       const auth = getAuth();
       const userCredential = await signInWithEmailAndPassword(
         auth,
@@ -75,12 +72,12 @@ export function handleSignIn(email, password) {
       console.log(user);
       dispatch(setUser(userData));
       dispatch(setAuthToken(user.accessToken));
-      dispatch(removeAuthLoading());
     } catch (error) {
       console.log(error.code);
       console.log(error.message);
       dispatch(setAuthSignInError(error.message));
-      dispatch(removeAuthLoading());
+    } finally {
+      dispatch(setAuthLoading(false));
     }
   };
 }
@@ -89,7 +86,7 @@ export function handleSignIn(email, password) {
 export function handleSignUp(name, email, password) {
   return async function handleSignUpThunk(dispatch, getState) {
     try {
-      dispatch(setAuthLoading());
+      dispatch(setAuthLoading(true));
       const auth = getAuth();
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -97,23 +94,25 @@ export function handleSignUp(name, email, password) {
         password
       );
       const user = userCredential.user;
-      const updatedUser = await updateProfile(auth.currentUser, {
+      await updateProfile(auth.currentUser, {
         displayName: name,
       });
-      console.log("updated user data ", updatedUser);
+
       const userData = {
         name: user.displayName,
         email: user.email,
         photoUrl: user.photoURL,
       };
+      console.log("user after singup from reducer", user)
       dispatch(setUser(userData));
       dispatch(setAuthToken(user.accessToken));
-      dispatch(removeAuthLoading());
+      dispatch(setAuthSignUpError(null))
     } catch (error) {
       console.log(error.code);
       console.log(error.message);
       dispatch(setAuthSignUpError(error.message));
-      dispatch(removeAuthLoading());
+    } finally {
+      dispatch(setAuthLoading(false));
     }
   };
 }
@@ -122,16 +121,20 @@ export function handleSignUp(name, email, password) {
 export function handleSignOut() {
   return async function handleSignOutThunk(dispatch, getState) {
     try {
+      dispatch(setAuthLoading(true));
       const auth = getAuth();
       const user = await signOut(auth);
       console.log("logout user", user);
-      dispatch(setUser({}));
-      dispatch(setAuthToken(null));
     } catch (error) {
       console.log(error.code);
       console.log(error.message);
       // dispatch(setAuthError(error.message))
-      dispatch(removeAuthLoading());
+    } finally {
+      dispatch(setAuthLoading(false));
+      dispatch(setUser({}));
+      dispatch(setAuthToken(null));
+      dispatch(setAuthSignInError(null));
+      dispatch(setAuthSignUpError(null));
     }
   };
 }

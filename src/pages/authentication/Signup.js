@@ -1,44 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  handleSignUp,
-} from "../../features/authSlice/authSlice";
+import { handleSignUp, setAuthSignUpError } from "../../features/authSlice/authSlice";
 
 function Signup() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {authSignUpError, authLoading} = useSelector((state) => state.auth)
-  const [name, setName] = useState("")
+  const { authSignUpError, authLoading, authToken} = useSelector((state) => state.auth);
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignUpAndValidate = async () => {
+  const handleSignUpAndValidate = () => {
 
     if (email === "" || password === "" || name === "") {
-    
-      alert("All fields are required!");
-    
+      dispatch(setAuthSignUpError("All fields are required!"))
+     
     } else {
-      
-      const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-      const isValid = emailRegex.test(email)
 
-      if(isValid){
+      const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+      const isValid = emailRegex.test(email);
+
+      if (isValid) {
         dispatch(handleSignUp(name, email, password));
         setName("");
         setEmail("");
         setPassword("");
-        if(authSignUpError == ""){
-          navigate("/");
-        }
-      }else{
-        alert("Invalid Email Address!");
+      } else {
+        dispatch(setAuthSignUpError("Invalid email address!"))
       }
+
 
     }
   };
 
+  useEffect(() => {
+      if(authToken !== null){
+        navigate("/")
+      }
+  },[authToken])
 
   return (
     <section className="text-gray-600 body-font relative">
@@ -48,10 +48,10 @@ function Signup() {
             Sign up To GetMyNotes
           </h1> */}
           <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:mx-auto w-full mt-10 md:mt-0">
-          <h2 class="text-gray-900 text-lg font-medium title-font mb-5">
+            <h2 className="text-gray-900 text-lg font-medium title-font mb-5">
               Sign Up
             </h2>
-          <div className="p-2">
+            <div className="p-2">
               <div className="relative">
                 <label
                   htmlFor="name"
@@ -106,15 +106,20 @@ function Signup() {
                   className="w-full bg-white bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 />
               </div>
-              <p className="text-red-600 text-center text-sm mt-3">{authSignUpError == "" ? "" : authSignUpError}</p>
+              {authSignUpError && (
+                <p className="text-red-600 text-center text-sm mt-3">
+                  {authSignUpError}
+                </p>
+              )}
             </div>
 
             <button
-               disabled={authLoading}
-               className={
-                 authLoading ? "flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 mt-2 focus:outline-none hover:bg-indigo-600 rounded text-sm disabled:opacity-50 disabled:cursor-not-allowed" :
-                 "flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 mt-2 focus:outline-none hover:bg-indigo-600 rounded text-sm"
-               }
+              disabled={authLoading}
+              className={
+                authLoading
+                  ? "flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 mt-2 focus:outline-none hover:bg-indigo-600 rounded text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                  : "flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 mt-2 focus:outline-none hover:bg-indigo-600 rounded text-sm"
+              }
               onClick={handleSignUpAndValidate}
             >
               Sign up

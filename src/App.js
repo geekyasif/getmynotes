@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-
 import Home from "./pages/user/Home";
 import Dashboard from "./pages/admin/Dashboard";
 import Signin from "./pages/authentication/Signin";
@@ -11,6 +10,7 @@ import AuthRoute from "./routes/AuthRoute";
 import AdminRoute from "./routes/AdminRoute";
 
 function App() {
+ 
   return (
     <>
       <Navigation />

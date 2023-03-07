@@ -1,5 +1,5 @@
 import { getAuth, signOut } from "firebase/auth";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { handleSignOut } from "../features/authSlice/authSlice";
@@ -11,8 +11,13 @@ function Navigation() {
 
   const signOut = () => {
     dispatch(handleSignOut());
-    navigate("/signin");
   };
+
+  useEffect(() => {
+      if(authToken === null){
+        navigate("/signin")
+      }
+  },[authToken])
 
   return (
     <header className="text-gray-600 body-font border-b sticky top-0 bg-white">
