@@ -44,14 +44,20 @@ function Signup() {
   }, [authToken]);
 
   return (
-    <section className="text-gray-600 body-font relative">
-      <div className="container px-5 py-24 mx-auto ">
-        <div className="flex flex-col justify-center items-center w-full">
+    <section className="text-gray-600 body-font relative pb-8">
+      <div className="container mx-auto px-5 md:h-screen lg:h-screen">
+        <div className="flex flex-col justify-center items-center md:h-full lg:h-full pb-4">
           {/* <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
             Sign up To GetMyNotes
           </h1> */}
-          <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:mx-auto w-full mt-10 md:mt-0">
-            <h2 className="text-gray-900 text-lg font-medium title-font mb-5">
+
+          <div className="flex title-font font-medium items-center text-gray-900 mt-4 lg:mb-8">
+            <img src="/getmynotesicon.svg" width={30} color="blue" alt="logo" />
+            <span className="ml-3 text-xl">GetMyNotes</span>
+          </div>
+
+          <div className="lg:w-2/5 xl:w-2/6 bg-gray-100 rounded-lg p-4 lg:p-4 flex flex-col md:mx-auto w-full mt-4 md:mt-0">
+            <h2 className="text-gray-900 text-lg font-medium title-font mb-3 text-center">
               Sign Up
             </h2>
             <div className="p-2">

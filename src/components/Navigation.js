@@ -8,7 +8,7 @@ function Navigation() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const { authToken } = useSelector((state) => state.auth);
+  const { authToken, user} = useSelector((state) => state.auth);
 
   const signOut = () => {
     dispatch(handleSignOut());
@@ -25,7 +25,7 @@ function Navigation() {
 
   return (
     <header className="text-gray-600 body-font border-b bg-white">
-      <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <div className="container mx-auto p-5 flex flex-wrap flex-col md:flex-row items-center">
         <Link
           to="/"
           className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
@@ -50,29 +50,33 @@ function Navigation() {
           {/* <Link className="mr-5 hover:text-gray-900" to="/dashboard">Dashboard</Link> */}
         </nav>
 
-        {authToken != null ? (
-          <button
-            className="inline-flex items-center text-white bg-indigo-500 border-0 py-1 px-3 focus:outline-none hover:bg-indigo-600 rounded text-base mt-4 md:mt-0 mr-3"
-            onClick={() => signOut()}
-          >
-            Sign Out
-          </button>
-        ) : (
-          <>
-            <Link
+        <div>
+          {authToken != null ? (
+            <button
               className="inline-flex items-center text-white bg-indigo-500 border-0 py-1 px-3 focus:outline-none hover:bg-indigo-600 rounded text-base mt-4 md:mt-0 mr-3"
-              to="/signin"
+              onClick={() => signOut()}
             >
-              Sign in
-            </Link>
-            <Link
-              className="inline-flex items-center text-gray-700 bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0 mr-3"
-              to="/signup"
-            >
-              Sign up
-            </Link>
-          </>
-        )}
+              {/* {user.name?.split(" ")[0]}
+               */}
+               Sign out
+            </button>
+          ) : (
+            <>
+              <Link
+                className="inline-flex items-center text-white bg-indigo-500 border-0 py-1 px-3 focus:outline-none hover:bg-indigo-600 rounded text-base mt-4 md:mt-0 mr-3"
+                to="/signin"
+              >
+                Sign in
+              </Link>
+              <Link
+                className="inline-flex items-center text-gray-700 bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0 mr-3"
+                to="/signup"
+              >
+                Sign up
+              </Link>
+            </>
+          )}
+        </div>
       </div>
     </header>
   );
