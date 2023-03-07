@@ -3,7 +3,7 @@ import Loader from "react-js-loader";
 
 function UserNoteSidebar({ handleTabClick, subjects, activeTab }) {
   return (
-    <div className="sidebar-container bg-gray-100 p-4 rounded mr-4 shadow mb-4 sm:w-full sm:mr-0">
+    <div className="sidebar-container bg-gray-100 p-4 rounded mr-4 shadow mb-4">
       {subjects.length === 0 ? (
         <Loader type="spinner-default" bgColor={"blue"} size={30} />
       ) : (
