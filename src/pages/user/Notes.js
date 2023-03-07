@@ -67,7 +67,7 @@ function Notes() {
 
   return (
     <div className="container mx-auto">
-      <div className="flex flex-row flex-wrap-reverse my-4 justify-around">
+      <div className="m-2 flex flex-col-reverse md:m-0 lg:m-0 md:flex lg:flex md:flex-row lg:flex-row md:mt-4 lg:mt-4">
         <UserNoteSidebar
           handleTabClick={handleTabClick}
           subjects={subjectList}
