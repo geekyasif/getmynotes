@@ -1,32 +1,36 @@
-import { getAuth, signOut } from "firebase/auth";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { handleSignOut } from "../features/authSlice/authSlice";
 
 function Navigation() {
+  // eslint-disable-next-line
   const navigate = useNavigate();
+
   const dispatch = useDispatch();
-  const { authToken, user } = useSelector((state) => state.auth);
+  const { authToken } = useSelector((state) => state.auth);
 
   const signOut = () => {
     dispatch(handleSignOut());
   };
 
   useEffect(() => {
-      if(authToken === null){
-        navigate("/signin")
-      }
-  },[authToken])
+    if (authToken === null) {
+      // eslint-disable-next-line
+      navigate("/signin");
+    }
+
+    // eslint-disable-next-line
+  }, [authToken]);
 
   return (
-    <header className="text-gray-600 body-font border-b sticky top-0 bg-white">
+    <header className="text-gray-600 body-font border-b bg-white">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
         <Link
           to="/"
           className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
         >
-          <img src="/getmynotesicon.svg" width={30} color="blue" />
+          <img src="/getmynotesicon.svg" width={30} color="blue" alt="logo" />
           <span className="ml-3 text-xl">GetMyNotes</span>
         </Link>
         <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">

@@ -5,6 +5,7 @@ import { handleSignIn, setAuthSignInError } from "../../features/authSlice/authS
 
 function Signin() {
   const dispatch = useDispatch();
+  // eslint-disable-next-line
   const navigate = useNavigate();
   const { authSignInError, authLoading, authToken } = useSelector((state) => state.auth);
   const [email, setEmail] = useState("");
@@ -30,8 +31,10 @@ function Signin() {
 
   useEffect(() => {
     if(authToken !== null){
+      // eslint-disable-next-line
       navigate("/")
     }
+      // eslint-disable-next-line
 },[authToken])
 
   return (

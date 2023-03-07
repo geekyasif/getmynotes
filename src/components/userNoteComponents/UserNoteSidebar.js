@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from "react";
-
+import React from "react";
 import Loader from "react-js-loader";
 
 function UserNoteSidebar({ handleTabClick, subjects, activeTab }) {
   return (
-    <div
-      style={{ width: "20%" }}
-      className="bg-gray-100 p-4 rounded mr-4 shadow"
-    >
-      {subjects.length == 0 ? (
+    <div className="sidebar-container bg-gray-100 p-4 rounded mr-4 shadow mb-4 sm:w-full sm:mr-0">
+      {subjects.length === 0 ? (
         <Loader type="spinner-default" bgColor={"blue"} size={30} />
       ) : (
         subjects.map((subject) => (
@@ -16,7 +12,7 @@ function UserNoteSidebar({ handleTabClick, subjects, activeTab }) {
             key={subject.id}
             onClick={() => handleTabClick(subject)}
             className={
-              activeTab == subject.title
+              activeTab === subject.title
                 ? "bg-indigo-500 text-sm text-white cursor-pointer p-2 rounded my-2"
                 : "cursor-pointer p-2 rounded my-2 text-sm"
             }

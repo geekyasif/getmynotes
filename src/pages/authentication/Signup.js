@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { handleSignUp, setAuthSignUpError } from "../../features/authSlice/authSlice";
+import {
+  handleSignUp,
+  setAuthSignUpError,
+} from "../../features/authSlice/authSlice";
 
 function Signup() {
   const dispatch = useDispatch();
+  // eslint-disable-next-line
   const navigate = useNavigate();
-  const { authSignUpError, authLoading, authToken} = useSelector((state) => state.auth);
+  const { authSignUpError, authLoading, authToken } = useSelector(
+    (state) => state.auth
+  );
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSignUpAndValidate = () => {
-
     if (email === "" || password === "" || name === "") {
-      dispatch(setAuthSignUpError("All fields are required!"))
-     
+      dispatch(setAuthSignUpError("All fields are required!"));
     } else {
-
       const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
       const isValid = emailRegex.test(email);
 
@@ -27,18 +30,18 @@ function Signup() {
         setEmail("");
         setPassword("");
       } else {
-        dispatch(setAuthSignUpError("Invalid email address!"))
+        dispatch(setAuthSignUpError("Invalid email address!"));
       }
-
-
     }
   };
 
   useEffect(() => {
-      if(authToken !== null){
-        navigate("/")
-      }
-  },[authToken])
+    if (authToken !== null) {
+      // eslint-disable-next-line
+      navigate("/");
+    }
+    // eslint-disable-next-line
+  }, [authToken]);
 
   return (
     <section className="text-gray-600 body-font relative">

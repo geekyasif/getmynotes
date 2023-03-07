@@ -5,23 +5,26 @@ function UserNoteSidebarContainer({ data, notes, loading }) {
   return (
     <div
       style={{ width: "78%" }}
-      className="bg-gray-100 p-4 rounded flex flex-col shadow"
+      className="bg-gray-100 p-4 rounded flex flex-col shadow mb-4 sm:w-full sm:ml-0"
     >
-      <p className="text-2xl font-bold mb-4">{data}</p>
+      <p className="text-2xl font-bold mb-4 text-center mt-2">{data}</p>
 
       {loading ? (
-        <Loader type="spinner-default" bgColor={"blue"} size={30} />
+        <div className="flex justify-center items-start w-full h-full">
+          <Loader type="spinner-default" bgColor={"blue"} size={30} />
+        </div>
       ) : (
         <ul>
-          {notes.length == 0 ? (
-            <p>No data found !</p>
+          {notes.length === 0 ? (
+            <p className="text-center mt-4">No data found !</p>
           ) : (
             notes.map((note) => (
               <li className="my-3" key={note.id}>
                 <a
                   href={note.url}
                   target="_blank"
-                  className="text-blue-600"
+                  rel="noreferrer noopener"
+                  className="text-indigo-500"
                   download
                 >
                   {note.title}

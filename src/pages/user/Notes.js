@@ -43,6 +43,7 @@ function Notes() {
     setLoading(true);
 
     const fetchSubjects = async () => {
+      // eslint-disable-next-line
       const document = [];
 
       const querySnapshot = await getDocs(collection(db, "subjects"));
@@ -51,20 +52,22 @@ function Notes() {
           id: doc.id,
           title: doc.data()["title"],
         };
+        // eslint-disable-next-line
         document.push(subject);
       });
-
+      // eslint-disable-next-line
       setSubjectList(document);
     };
 
     fetchSubjects();
     handleFetchNotes("Operating System");
     setLoading(false);
+    // eslint-disable-next-line
   }, [document]);
 
   return (
-    <div className="h-screen flex flex-col">
-      <div className="container mx-auto flex flex-row flex-wrap my-4 justify-around h-screen">
+    <div className="h-full">
+      <div className="container mx-auto flex md:flex-row sm:flex-row-reverse flex-wrap my-4 justify-around">
         <UserNoteSidebar
           handleTabClick={handleTabClick}
           subjects={subjectList}
