@@ -67,7 +67,7 @@ export function handleSignIn(email, password) {
       const userData = {
         name: user.displayName,
         email: user.email,
-        photoUrl: user.photoURL,
+        photoUrl: user.email === "mohdasif.dev@gmail.com"  ? "admin" : "user",
       };
       console.log(user);
       dispatch(setUser(userData));
@@ -101,7 +101,7 @@ export function handleSignUp(name, email, password) {
       const userData = {
         name: user.displayName,
         email: user.email,
-        photoUrl: user.photoURL,
+        photoUrl: user.email === "mohdasif.dev@gmail.com"  ? "admin" : "user",
       };
       console.log("user after singup from reducer", user)
       dispatch(setUser(userData));

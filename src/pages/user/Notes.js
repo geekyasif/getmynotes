@@ -12,12 +12,12 @@ function Notes() {
   const [data, setData] = useState("Operating System");
   const [notes, setNotes] = useState([]);
 
-  const handleFetchNotes = async (title) => {
+  const handleFetchNotes = async (slug) => {
     setLoading(true);
 
     const _data = [];
 
-    const q = query(collection(db, "notes"), where("subject", "==", title));
+    const q = query(collection(db, "notes"), where("subject", "==", slug));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       _data.push({
@@ -32,10 +32,10 @@ function Notes() {
     setLoading(false);
   };
 
-  const handleTabClick = async ({ id, title }) => {
+  const handleTabClick = async ({slug,title}) => {
     setActiveTab(title);
     setData(title);
-    handleFetchNotes(title);
+    handleFetchNotes(slug);
   };
 
   // fetching subjects
@@ -51,6 +51,7 @@ function Notes() {
         const subject = {
           id: doc.id,
           title: doc.data()["title"],
+          slug: doc.data()["slug"]
         };
         // eslint-disable-next-line
         document.push(subject);
@@ -60,7 +61,7 @@ function Notes() {
     };
 
     fetchSubjects();
-    handleFetchNotes("Operating System");
+    handleFetchNotes("operating-system");
     setLoading(false);
     // eslint-disable-next-line
   }, [document]);
@@ -73,7 +74,7 @@ function Notes() {
           subjects={subjectList}
           activeTab={activeTab}
         />
-        <UserNoteSidebarContainer data={data} notes={notes} loading={loading} />
+        <UserNoteSidebarContainer title={data} notes={notes} loading={loading} />
       </div>
       <Footer />
     </div>

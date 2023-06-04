@@ -9,7 +9,9 @@ function Navigation() {
   const location = useLocation();
 
   const dispatch = useDispatch();
-  const { authToken } = useSelector((state) => state.auth);
+  const { authToken, user } = useSelector((state) => state.auth);
+
+  console.log(user)
 
   const signOut = () => {
     dispatch(handleSignOut());
@@ -57,7 +59,9 @@ function Navigation() {
             to="/contact">
             Contact us
           </Link>
-          {/* <Link className="mr-5 hover:text-gray-900" to="/dashboard">Dashboard</Link> */}
+          {
+            authToken && user.photoUrl === "admin" ? <Link className="mr-5 hover:text-gray-900" to="/dashboard">Dashboard</Link> : ""
+          }
 
           <div className="flex flex-row flex-wrap justify-center">
             {authToken != null ? (

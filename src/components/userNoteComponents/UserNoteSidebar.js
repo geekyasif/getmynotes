@@ -2,6 +2,7 @@ import React from "react";
 import Loader from "react-js-loader";
 
 function UserNoteSidebar({ handleTabClick, subjects, activeTab }) {
+
   return (
     <div className="p-2 bg-gray-100 rounded md:mr-2 lg:mr-2">
       {/* <p className="my-2 ml-1 font-bold text-lg md:text-sm lg:text-lg">Subjects</p> */}

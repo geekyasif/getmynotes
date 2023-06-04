@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
 
 function Home() {
-  const { authToken } = useSelector((state) => state.auth);
+  const { authToken, user } = useSelector((state) => state.auth);
+  console.log(user)
   return (
     <div className="container mx-auto">
       <section className="text-gray-600 body-font">
