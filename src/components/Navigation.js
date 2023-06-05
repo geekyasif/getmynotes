@@ -11,7 +11,7 @@ function Navigation() {
   const dispatch = useDispatch();
   const { authToken, user } = useSelector((state) => state.auth);
 
-  console.log(user)
+  console.log(user);
 
   const signOut = () => {
     dispatch(handleSignOut());
@@ -38,30 +38,45 @@ function Navigation() {
         </Link>
         <nav className="md:ml-auto flex flex-row flex-wrap items-center text-base justify-center">
           <Link
-          className={location.pathname === "/" ? 'mr-5 hover:text-indigo-600 text-sm md:text-base text-indigo-500' : 'mr-5 hover:text-gray-900 text-sm md:text-base'}
+            className={
+              location.pathname === "/"
+                ? "mr-5 hover:text-indigo-600 text-sm md:text-base text-indigo-500"
+                : "mr-5 hover:text-gray-900 text-sm md:text-base"
+            }
             // className="mr-5 hover:text-gray-900 text-sm md:text-base"
             to="/"
           >
             Home
           </Link>
-          {authToken != null ? (
-            <Link 
-              className={location.pathname === "/notes" ? 'mr-5 hover:text-indigo-600 text-sm md:text-base text-indigo-500' : 'mr-5 hover:text-gray-900 text-sm md:text-base'}
-              to="/notes"
-            >
-              Notes
-            </Link>
-          ) : (
-            <></>
-          )}
-          <Link 
-            className={location.pathname === "/contact" ? 'mr-5 hover:text-indigo-600 text-sm md:text-base text-indigo-500' : 'mr-5 hover:text-gray-900 text-sm md:text-base'}
-            to="/contact">
+
+          <Link
+            className={
+              location.pathname === "/notes"
+                ? "mr-5 hover:text-indigo-600 text-sm md:text-base text-indigo-500"
+                : "mr-5 hover:text-gray-900 text-sm md:text-base"
+            }
+            to="/notes"
+          >
+            Notes
+          </Link>
+
+          <Link
+            className={
+              location.pathname === "/contact"
+                ? "mr-5 hover:text-indigo-600 text-sm md:text-base text-indigo-500"
+                : "mr-5 hover:text-gray-900 text-sm md:text-base"
+            }
+            to="/contact"
+          >
             Contact us
           </Link>
-          {
-            authToken && user.photoUrl === "admin" ? <Link className="mr-5 hover:text-gray-900" to="/dashboard">Dashboard</Link> : ""
-          }
+          {authToken && user.photoUrl === "admin" ? (
+            <Link className="mr-5 hover:text-gray-900" to="/dashboard">
+              Dashboard
+            </Link>
+          ) : (
+            ""
+          )}
 
           <div className="flex flex-row flex-wrap justify-center">
             {authToken != null ? (

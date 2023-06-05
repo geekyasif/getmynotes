@@ -1,5 +1,7 @@
 import React from "react";
 import Loader from "react-js-loader";
+import UserNoteSubjectSidebarShrimmer from "../Shrimmers/UserNoteSubjectSidebarShrimmer";
+import UserNoteContainerShrimmer from "../Shrimmers/UserNoteContainerShrimmer";
 
 function UserNoteSidebarContainer({ title, notes, loading }) {
 
@@ -8,19 +10,20 @@ function UserNoteSidebarContainer({ title, notes, loading }) {
       // style={{ width: "80%" }}
       className="md:mr-1 lg:mr-1 bg-gray-100 w-full p-2 rounded mb-2 md:mb-0 lg:mb-0"
     >
-      <p className="md:text-2xl lg:text-2xl text-lg font-bold mb-4 text-center mt-2">{title}</p>
+      <p className="md:text-2xl lg:text-2xl text-lg font-bold mb-4 text-center mt-2">
+        {title}
+      </p>
 
       {loading ? (
-        <div className="flex justify-center items-start w-full h-full">
-          <Loader type="spinner-default" bgColor={"blue"} size={30} />
-        </div>
+        <UserNoteContainerShrimmer/>
       ) : (
         <ul>
           {notes.length === 0 ? (
             <p className="text-center mt-4">No data found !</p>
           ) : (
             notes.map((note) => (
-              <li className="my-3" key={note.id}>
+             <div>
+               <li className="my-3" key={note.id}>
                 <a
                   href={note.url}
                   target="_blank"
@@ -31,6 +34,7 @@ function UserNoteSidebarContainer({ title, notes, loading }) {
                   {note.title}
                 </a>
               </li>
+             </div>
             ))
           )}
         </ul>

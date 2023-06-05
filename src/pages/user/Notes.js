@@ -4,8 +4,11 @@ import UserNoteSidebarContainer from "../../components/userNoteComponents/UserNo
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebase";
 import Footer from "../../components/Footer";
+import { useSelector } from "react-redux";
+import UserNoteShowLoginError from "../../components/Shrimmers/UserNoteShowLoginError";
 
 function Notes() {
+  const {authToken} = useSelector((state) => state.auth)
   const [subjectList, setSubjectList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("Operating System");
@@ -74,7 +77,10 @@ function Notes() {
           subjects={subjectList}
           activeTab={activeTab}
         />
-        <UserNoteSidebarContainer title={data} notes={notes} loading={loading} />
+        {
+          authToken === null ? <UserNoteShowLoginError/> : <UserNoteSidebarContainer title={data} notes={notes} loading={loading} />
+        }
+        
       </div>
       <Footer />
     </div>

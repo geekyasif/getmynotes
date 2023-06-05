@@ -1,13 +1,13 @@
 import React from "react";
 import Loader from "react-js-loader";
+import UserNoteSubjectSidebarShrimmer from "../Shrimmers/UserNoteSubjectSidebarShrimmer";
 
 function UserNoteSidebar({ handleTabClick, subjects, activeTab }) {
 
   return (
-    <div className="p-2 bg-gray-100 rounded md:mr-2 lg:mr-2">
-      {/* <p className="my-2 ml-1 font-bold text-lg md:text-sm lg:text-lg">Subjects</p> */}
+    <div className="p-2 bg-gray-100 rounded md:mr-2 lg:mr-2 border">
       {subjects.length === 0 ? (
-        <Loader type="spinner-default" bgColor={"blue"} size={30} />
+        <UserNoteSubjectSidebarShrimmer/>
       ) : (
         subjects.map((subject) => (
           <p

@@ -16,11 +16,11 @@ function App() {
       <Navigation />
       <Routes>
         <Route element={<AuthRoute />}>
-          <Route path="notes" element={<Notes />} />
         </Route>
         <Route element={<AdminRoute />}>
           <Route path="dashboard" element={<Dashboard />} />
         </Route>
+          <Route path="notes" element={<Notes />} />
         <Route path="/" element={<Home />} />
         <Route path="contact" element={<Contact />} />
         <Route path="signin" element={<Signin />} />
