@@ -1,5 +1,4 @@
 import React from "react";
-import Loader from "react-js-loader";
 import UserNoteSubjectSidebarShrimmer from "../Shrimmers/UserNoteSubjectSidebarShrimmer";
 
 function UserNoteSidebar({ handleTabClick, subjects, activeTab }) {

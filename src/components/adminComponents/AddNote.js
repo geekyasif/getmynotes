@@ -1,10 +1,12 @@
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import useSubject from "../../hooks/useSubject";
 
 function AddNote() {
+  // eslint-disable-next-line
   const [loading, setLoading] = useState(false);
+
   const { fetchSubjects, subjectList } = useSubject();
   const [note, setNote] = useState({
     title: "",
@@ -22,7 +24,9 @@ function AddNote() {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line
     fetchSubjects();
+    // eslint-disable-next-line
   }, []);
 
   const handleAddNote = async () => {
@@ -39,7 +43,7 @@ function AddNote() {
 
     try {
       setLoading(true);
-      const docRef = await addDoc(collection(db, "notes"), data);
+      await addDoc(collection(db, "notes"), data);
       setLoading(false);
     } catch (e) {
       // console.error("Error adding document: ", e);

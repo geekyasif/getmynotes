@@ -1,6 +1,4 @@
 import React from "react";
-import Loader from "react-js-loader";
-import UserNoteSubjectSidebarShrimmer from "../Shrimmers/UserNoteSubjectSidebarShrimmer";
 import UserNoteContainerShrimmer from "../Shrimmers/UserNoteContainerShrimmer";
 
 function UserNoteSidebarContainer({ title, notes, loading }) {

@@ -5,7 +5,7 @@ import {
   doc,
   getDocs,
 } from "firebase/firestore";
-import React, { useState } from "react";
+import { useState } from "react";
 import { db } from "../firebase";
 
 function useSubject() {
@@ -30,7 +30,7 @@ function useSubject() {
   const addSubject = async (data, setSubject, setLoading) => {
     try {
       setLoading(true);
-      const docRef = await addDoc(collection(db, "subjects"), data);
+      await addDoc(collection(db, "subjects"), data);
       setSubject("");
     } catch (e) {
       console.error("Error adding document: ", e);

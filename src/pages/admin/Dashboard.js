@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import AddNote from "../../components/adminComponents/AddNote";
 import AddSubject from "../../components/adminComponents/AddSubject";
 import Sidebar from "../../components/adminComponents/Sidebar";
 import SidebarContainer from "../../components/adminComponents/SidebarContainer";
-import useSubject from "../../hooks/useSubject";
 
 function Dashboard() {
   const [activeTab, setActiveTab] = useState("subjects");
