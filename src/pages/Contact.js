@@ -34,7 +34,7 @@ function Contact() {
             setMessage("");
             alert("Thank you for contacting us.");
           } catch (e) {
-            console.error("Error adding document: ", e);
+            // console.error("Error adding document: ", e);
           } finally {
             setLoading(false);
           }
@@ -134,7 +134,7 @@ function Contact() {
           </div>
 
           <div className="p-2 w-full pt-8 mt-8 border-gray-200 text-center">
-            <a href="mailto:shabajansari843@gmail.com" className="text-indigo-500">Email on: GetMyNotes</a>
+            <a href="mailto:mohdasif.dev@gmail.com" className="text-indigo-500">Email on: GetMyNotes</a>
             <p className="leading-normal my-5">
               Galgotias University
               <br />

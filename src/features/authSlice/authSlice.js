@@ -67,14 +67,11 @@ export function handleSignIn(email, password) {
       const userData = {
         name: user.displayName,
         email: user.email,
-        photoUrl: user.photoURL,
+        photoUrl: user.email === "mohdasif.dev@gmail.com"  ? "admin" : "user",
       };
-      console.log(user);
       dispatch(setUser(userData));
       dispatch(setAuthToken(user.accessToken));
     } catch (error) {
-      console.log(error.code);
-      console.log(error.message);
       dispatch(setAuthSignInError(error.message));
     } finally {
       dispatch(setAuthLoading(false));
@@ -101,15 +98,12 @@ export function handleSignUp(name, email, password) {
       const userData = {
         name: user.displayName,
         email: user.email,
-        photoUrl: user.photoURL,
+        photoUrl: user.email === "mohdasif.dev@gmail.com"  ? "admin" : "user",
       };
-      console.log("user after singup from reducer", user)
       dispatch(setUser(userData));
       dispatch(setAuthToken(user.accessToken));
       dispatch(setAuthSignUpError(null))
     } catch (error) {
-      console.log(error.code);
-      console.log(error.message);
       dispatch(setAuthSignUpError(error.message));
     } finally {
       dispatch(setAuthLoading(false));
@@ -124,10 +118,7 @@ export function handleSignOut() {
       dispatch(setAuthLoading(true));
       const auth = getAuth();
       const user = await signOut(auth);
-      console.log("logout user", user);
     } catch (error) {
-      console.log(error.code);
-      console.log(error.message);
       // dispatch(setAuthError(error.message))
     } finally {
       dispatch(setAuthLoading(false));

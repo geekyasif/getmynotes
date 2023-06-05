@@ -1,14 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
 
 function Home() {
-  const { authToken } = useSelector((state) => state.auth);
+
   return (
     <div className="container mx-auto">
       <section className="text-gray-600 body-font">
-        <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+        <div className="container mx-auto flex px-5 lg:py-24 md:py-24 md:flex-row flex-col-reverse items-center">
           <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
             <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
               Elevate Your Learning Experience
@@ -23,7 +22,7 @@ function Home() {
             </p>
             <div className="flex justify-center">
               <Link
-                to={authToken == null ? "/signin" : "/notes"}
+                to={"/notes"}
                 className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
               >
                 GetMyNotes
@@ -41,16 +40,14 @@ function Home() {
       </section>
 
       <section className="text-gray-600 body-font">
-        <div className="container px-5 py-24 mx-auto">
+        <div className="container px-5 lg:py-20 md:py-20 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">
             <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
               Notes at Your Fingertips
             </h1>
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
               Get Access to Comprehensive and Reliable Notes with Our University
-              Notes Download Website. subway tile poke farm-to-table. Franzen
-              you probably haven't heard of them man bun deep jianbing selfies
-              heirloom prism food truck ugh squid celiac humblebrag.
+              Notes Download Website.
             </p>
           </div>
           <div className="flex flex-wrap -m-4 text-center">

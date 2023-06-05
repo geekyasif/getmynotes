@@ -9,7 +9,7 @@ function Navigation() {
   const location = useLocation();
 
   const dispatch = useDispatch();
-  const { authToken } = useSelector((state) => state.auth);
+  const { authToken, user } = useSelector((state) => state.auth);
 
   const signOut = () => {
     dispatch(handleSignOut());
@@ -36,30 +36,46 @@ function Navigation() {
         </Link>
         <nav className="md:ml-auto flex flex-row flex-wrap items-center text-base justify-center">
           <Link
-          className={location.pathname === "/" ? 'mr-5 hover:text-indigo-600 text-sm md:text-base text-indigo-500' : 'mr-5 hover:text-gray-900 text-sm md:text-base'}
-            // className="mr-5 hover:text-gray-900 text-sm md:text-base"
+            className={
+              location.pathname === "/"
+                ? "mr-5 hover:text-indigo-600 text-sm md:text-base text-indigo-500"
+                : "mr-5 hover:text-gray-900 text-sm md:text-base"
+            }
             to="/"
           >
             Home
           </Link>
-          {authToken != null ? (
-            <Link 
-              className={location.pathname === "/notes" ? 'mr-5 hover:text-indigo-600 text-sm md:text-base text-indigo-500' : 'mr-5 hover:text-gray-900 text-sm md:text-base'}
-              to="/notes"
-            >
-              Notes
-            </Link>
-          ) : (
-            <></>
-          )}
-          <Link 
-            className={location.pathname === "/contact" ? 'mr-5 hover:text-indigo-600 text-sm md:text-base text-indigo-500' : 'mr-5 hover:text-gray-900 text-sm md:text-base'}
-            to="/contact">
+
+          <Link
+            className={
+              location.pathname === "/notes"
+                ? "mr-5 hover:text-indigo-600 text-sm md:text-base text-indigo-500"
+                : "mr-5 hover:text-gray-900 text-sm md:text-base"
+            }
+            to="/notes"
+          >
+            Notes
+          </Link>
+
+          <Link
+            className={
+              location.pathname === "/contact"
+                ? "mr-5 hover:text-indigo-600 text-sm md:text-base text-indigo-500"
+                : "mr-5 hover:text-gray-900 text-sm md:text-base"
+            }
+            to="/contact"
+          >
             Contact us
           </Link>
-          {/* <Link className="mr-5 hover:text-gray-900" to="/dashboard">Dashboard</Link> */}
+          {authToken && user.photoUrl === "admin" ? (
+            <Link className="mr-5 hover:text-gray-900" to="/dashboard">
+              Dashboard
+            </Link>
+          ) : (
+            ""
+          )}
 
-          <div className="flex flex-row flex-wrap justify-center">
+          <div className="flex flex-row flex-wrap justify-center mt-2">
             {authToken != null ? (
               <button
                 className="inline-flex items-center text-white bg-indigo-500 border-0 py-1 px-2 text-sm md:px-3 lg:px-3 md:py-1 lg:py-1 focus:outline-none hover:bg-indigo-600 rounded md:text-base lg:text-base mr-3"
