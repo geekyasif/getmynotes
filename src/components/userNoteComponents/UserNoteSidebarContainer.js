@@ -4,7 +4,6 @@ import UserNoteSubjectSidebarShrimmer from "../Shrimmers/UserNoteSubjectSidebarS
 import UserNoteContainerShrimmer from "../Shrimmers/UserNoteContainerShrimmer";
 
 function UserNoteSidebarContainer({ title, notes, loading }) {
-
   return (
     <div
       // style={{ width: "80%" }}
@@ -15,29 +14,29 @@ function UserNoteSidebarContainer({ title, notes, loading }) {
       </p>
 
       {loading ? (
-        <UserNoteContainerShrimmer/>
+        <UserNoteContainerShrimmer />
       ) : (
-        <ul>
+        <div>
           {notes.length === 0 ? (
             <p className="text-center mt-4">No data found !</p>
           ) : (
-            notes.map((note) => (
-             <div>
-               <li className="my-3" key={note.id}>
-                <a
-                  href={note.url}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="text-indigo-500"
-                  download
-                >
-                  {note.title}
-                </a>
-              </li>
-             </div>
-            ))
+            <ul>
+              {notes.map((note, index) => (
+                <li className="my-3" key={index}>
+                  <a
+                    href={note.url}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="text-indigo-500"
+                    download
+                  >
+                    {index + 1}. {note.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
           )}
-        </ul>
+        </div>
       )}
     </div>
   );

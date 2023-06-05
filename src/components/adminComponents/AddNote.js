@@ -42,10 +42,9 @@ function AddNote() {
       const docRef = await addDoc(collection(db, "notes"), data);
       setLoading(false);
     } catch (e) {
-      console.error("Error adding document: ", e);
+      // console.error("Error adding document: ", e);
     }
 
-    console.log(data);
     setNote({
       title: "",
       url: "",

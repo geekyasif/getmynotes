@@ -9,9 +9,9 @@ function UserNoteSidebar({ handleTabClick, subjects, activeTab }) {
       {subjects.length === 0 ? (
         <UserNoteSubjectSidebarShrimmer/>
       ) : (
-        subjects.map((subject) => (
+        subjects.map((subject, index) => (
           <p
-            key={subject.id}
+            key={index}
             onClick={() => handleTabClick(subject)}
             className={
               activeTab === subject.title

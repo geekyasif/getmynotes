@@ -35,11 +35,10 @@ function AllNotes() {
     fetchNotes();
   };
 
-console.log(notes)
   return (
     <div>
-      {notes.map((note) => (
-        <div className="flex flex-row justify-between p-2 my-2 rounded" key={note.id}>
+      {notes.map((note, index) => (
+        <div className="flex flex-row justify-between p-2 my-2 rounded" key={index}>
           <p className="text-lg">{note.title}  <span className="ml-10 bg-yellow-400 rounded p-2 text-sm">{ note.subject.replaceAll("-", " ").slice(0, 1).toUpperCase() + note.subject.replaceAll("-", " ").slice(1) }</span></p>
           <p
             className="cursor-pointer border p-2 rounded bg-red-600 text-white"

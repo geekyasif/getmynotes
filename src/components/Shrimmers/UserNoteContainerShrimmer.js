@@ -5,8 +5,8 @@ function UserNoteContainerShrimmer() {
 
   return (
     <div >
-      {notes.map(() => (
-        <div className="w-[98%] h-[30px] m-2 rounded p-2 bg-gray-200"></div>
+      {notes.map((note, index) => (
+        <div key={index} className="w-[98%] h-[30px] m-2 rounded p-2 bg-gray-200"></div>
       ))}
     </div>
   );

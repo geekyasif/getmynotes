@@ -15,8 +15,7 @@ function App() {
     <>
       <Navigation />
       <Routes>
-        <Route element={<AuthRoute />}>
-        </Route>
+        <Route element={<AuthRoute />}> </Route>
         <Route element={<AdminRoute />}>
           <Route path="dashboard" element={<Dashboard />} />
         </Route>

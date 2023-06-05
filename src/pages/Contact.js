@@ -34,7 +34,7 @@ function Contact() {
             setMessage("");
             alert("Thank you for contacting us.");
           } catch (e) {
-            console.error("Error adding document: ", e);
+            // console.error("Error adding document: ", e);
           } finally {
             setLoading(false);
           }
