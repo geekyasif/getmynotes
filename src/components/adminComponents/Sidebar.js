@@ -9,7 +9,7 @@ function Sidebar({ activeTab, handleTabClick }) {
       <p
         onClick={() => handleTabClick("subjects")}
         className={
-          activeTab == "subjects"
+          activeTab === "subjects"
             ? "my-2 p-2 rounded cursor-pointer bg-gray-200 font-semibold"
             : "my-2 p-2 rounded cursor-pointer text-gray-500"
         }
@@ -19,7 +19,7 @@ function Sidebar({ activeTab, handleTabClick }) {
       <p
         onClick={() => handleTabClick("notes")}
         className={
-          activeTab == "notes"
+          activeTab === "notes"
             ? "my-2 p-2 rounded cursor-pointer bg-gray-200 font-semibold"
             : "my-2 p-2 rounded cursor-pointer text-gray-500"
         }

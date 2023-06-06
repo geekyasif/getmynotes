@@ -117,7 +117,7 @@ export function handleSignOut() {
     try {
       dispatch(setAuthLoading(true));
       const auth = getAuth();
-      const user = await signOut(auth);
+      await signOut(auth);
     } catch (error) {
       // dispatch(setAuthError(error.message))
     } finally {
