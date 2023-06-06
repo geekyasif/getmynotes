@@ -8,12 +8,18 @@ import Notes from "./pages/user/Notes";
 import Contact from "./pages/Contact";
 import AuthRoute from "./routes/AuthRoute";
 import AdminRoute from "./routes/AdminRoute";
+import AdSense from 'react-adsense';
+
 
 function App() {
  
   return (
     <>
       <Navigation />
+      <AdSense.Google
+        client="pub-8586139549834082"
+        slot="9467877356"
+      />
       <Routes>
         <Route element={<AuthRoute />}> </Route>
         <Route element={<AdminRoute />}>
