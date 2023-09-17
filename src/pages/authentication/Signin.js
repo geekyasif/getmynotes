@@ -45,9 +45,6 @@ function Signin() {
     <section className="text-gray-600 body-font relative pb-8">
       <div className="container mx-auto px-5 md:h-screen lg:h-screen">
         <div className="flex flex-col justify-center items-center md:h-full lg:h-full pb-4">
-          {/* <h1 className="text-xl lg:text-xl xl:text-2xl font-medium title-font my-4 md:mt-0 lg:mt-0 text-gray-900">
-            GetMyNotes
-          </h1> */}
           <div className="flex title-font font-medium items-center text-gray-900 mt-4 lg:mb-8">
             <img src="/getmynotesicon.svg" width={30} color="blue" alt="logo" />
             <span className="ml-3 text-xl">GetMyNotes</span>

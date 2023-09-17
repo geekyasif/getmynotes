@@ -1,13 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
-import AdsComponent from "../../components/AdsComponent";
 
 function Home() {
 
   return (
     <div className="container mx-auto">
-      <AdsComponent dataAdSlot="9467877356"/>
+
       <section className="text-gray-600 body-font">
         <div className="container mx-auto flex px-5 lg:py-24 md:py-24 md:flex-row flex-col-reverse items-center">
           <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
@@ -40,8 +39,6 @@ function Home() {
           </div>
         </div>
       </section>
-
-      <AdsComponent dataAdSlot="9467877356"/>
 
       <section className="text-gray-600 body-font">
         <div className="container px-5 lg:py-20 md:py-20 mx-auto">

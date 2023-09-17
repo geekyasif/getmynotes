@@ -21,7 +21,6 @@ function useSubject() {
       }));
       setSubjectList(data);
     } catch (error) {
-      console.log(error);
     } finally {
     }
   };

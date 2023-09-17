@@ -71,7 +71,6 @@ function Notes() {
 
   return (
     <div className="container mx-auto">
-      <AdsComponent dataAdSlot="9467877356" />
       <div className="m-2 flex flex-col-reverse md:m-0 lg:m-0 md:flex lg:flex md:flex-row lg:flex-row md:mt-4 lg:mt-4">
         <UserNoteSidebar
           handleTabClick={handleTabClick}
@@ -88,7 +87,6 @@ function Notes() {
           />
         )}
       </div>
-      <AdsComponent dataAdSlot="9467877356" />
       <Footer />
     </div>
   );
