@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import UserNoteShowLoginError from "../../components/Shrimmers/UserNoteShowLoginError";
 
 function Notes() {
-  const {authToken} = useSelector((state) => state.auth)
+  const { authToken } = useSelector((state) => state.auth);
   const [subjectList, setSubjectList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("Operating System");
@@ -35,7 +35,7 @@ function Notes() {
     setLoading(false);
   };
 
-  const handleTabClick = async ({slug,title}) => {
+  const handleTabClick = async ({ slug, title }) => {
     setActiveTab(title);
     setData(title);
     handleFetchNotes(slug);
@@ -54,7 +54,7 @@ function Notes() {
         const subject = {
           id: doc.id,
           title: doc.data()["title"],
-          slug: doc.data()["slug"]
+          slug: doc.data()["slug"],
         };
         // eslint-disable-next-line
         document.push(subject);
@@ -71,17 +71,24 @@ function Notes() {
 
   return (
     <div className="container mx-auto">
+      <AdsComponent dataAdSlot="9467877356" />
       <div className="m-2 flex flex-col-reverse md:m-0 lg:m-0 md:flex lg:flex md:flex-row lg:flex-row md:mt-4 lg:mt-4">
         <UserNoteSidebar
           handleTabClick={handleTabClick}
           subjects={subjectList}
           activeTab={activeTab}
         />
-        {
-          authToken === null ? <UserNoteShowLoginError/> : <UserNoteSidebarContainer title={data} notes={notes} loading={loading} />
-        }
-        
+        {authToken === null ? (
+          <UserNoteShowLoginError />
+        ) : (
+          <UserNoteSidebarContainer
+            title={data}
+            notes={notes}
+            loading={loading}
+          />
+        )}
       </div>
+      <AdsComponent dataAdSlot="9467877356" />
       <Footer />
     </div>
   );
