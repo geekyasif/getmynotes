@@ -11,8 +11,9 @@ firebase-debug.*.log*
 .firebase/
 
 # Firebase config
-../firebase
+../firebase.js
 src/firebase.js
+/home/geekyasif/Desktop/getmynotes/src/firebase.js
 
 # build
 build
